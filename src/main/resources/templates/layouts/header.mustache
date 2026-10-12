@@ -1,0 +1,82 @@
+<!-- 1. HTML5 문서 타입 선언. 이 partial 파일이 다른 뷰 파일에 삽입될 때 함께 삽입되는
+     공통 상단 코드의 시작점입니다. -->
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- 2. Required meta tags : 반드시 있어야 하는 메타 정보 태그들이라는 의미의 주석 -->
+    <!-- 3. meta charset="utf-8" : 문서의 문자 인코딩을 UTF-8로 지정합니다. -->
+    <meta charset="utf-8">
+    <!-- 4. viewport 메타 태그 : 모바일 기기 화면 크기에 맞춰 레이아웃 너비(width)와
+         초기 확대/축소 비율(initial-scale)을 자동으로 조정하도록 지시하는 반응형 웹 설정입니다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 5. Bootstrap CSS : 부트스트랩 프레임워크의 CSS 파일을 CDN(외부 서버)에서 불러오는 link 태그입니다.
+         href 속성에 지정된 주소에서 CSS 파일을 다운로드해서 이 문서에 적용합니다.
+         integrity 속성 : 다운로드한 파일이 변조되지 않았는지 해시값으로 검증하는 보안 속성입니다.
+         crossorigin 속성 : 다른 출처(도메인)의 자원을 요청할 때의 정책을 지정하는 속성입니다. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- 6. title 태그 : 이 header가 삽입되는 문서들의 브라우저 탭 제목을 지정합니다. -->
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<!-- 7. navigation 영역 : 부트스트랩의 navbar 컴포넌트를 사용한 상단 메뉴 바입니다. -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- 8. navbar-brand : 네비게이션 바 좌측에 표시되는 로고/사이트명 영역입니다. -->
+        <a class="navbar-brand" href="#">Navbar</a>
+        <!-- 9. navbar-toggler 버튼 : 화면 폭이 좁아졌을 때(모바일 화면 등) 메뉴를
+             햄버거 아이콘 버튼으로 접었다 펼치는 토글(toggle) 버튼입니다.
+             data-bs-toggle, data-bs-target 속성은 부트스트랩 자바스크립트가
+             어떤 요소를 열고 닫을지 식별하는 데 사용하는 속성입니다. -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- 10. collapse navbar-collapse : 화면이 좁을 때 접혔다가 토글 버튼을 누르면 펼쳐지는
+             메뉴 목록 전체를 감싸는 영역입니다. id="navbarSupportedContent"는 위 버튼의
+             data-bs-target 값과 연결되는 식별자입니다. -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- 11. navbar-nav : 실제 메뉴 항목들을 담는 목록(ul) 태그입니다. -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- 12. nav-item, nav-link : 각각 메뉴 하나의 컨테이너와 클릭 가능한 링크입니다.
+                     active 클래스가 붙은 항목은 "현재 선택된 메뉴"임을 시각적으로 강조합니다. -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <!-- 13. dropdown : 마우스를 올리거나 클릭하면 하위 메뉴 목록이 펼쳐지는 드롭다운 메뉴입니다. -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <!-- 14. dropdown-divider : 드롭다운 메뉴 항목 사이에 구분선을 그어주는 요소입니다. -->
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <!-- 15. disabled 클래스 : 클릭할 수 없도록 비활성화된 메뉴 항목을 표시합니다. -->
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <!-- 16. 검색창 form : 네비게이션 바 우측의 검색 입력창과 검색 버튼을 감싸는 영역입니다. -->
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+{{#msg}}
+    <div class="alert alert-primary alert-dismissible">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                aria-label="Close"></button>
+    </div>
+{{/msg}}

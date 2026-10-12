@@ -1,0 +1,22 @@
+{{>layouts/header}}
+<!-- Model 객체에 addAttribute 메소드를 통해 바인딩한 객체를 사용하기 위한 영역 설정 -->
+{{#article}}
+<form class="container"  action="/articles/update" method="post">
+<!--  수정할 행을 조회하기 위한 id값을 hidden 속성으로 숨겨 저장해둠  -->
+    <input name="id" type="hidden" value="{{id}}">
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" value="{{title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+
+        <textarea class="form-control" rows="3" name="content">{{content}}</textarea>
+    </div>
+<!-- 요청 버튼 -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+<!-- 수정 취소 버튼 -->
+    <a href="/articles/{{id}}">Back</a>
+</form>
+{{/article}}
+{{>layouts/footer}}

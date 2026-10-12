@@ -1,0 +1,29 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--
+        model.addAttribute("articleList", articleEntityList) 으로 저장한 articleList 객체를 꺼내옴
+        리스트에 저장된 요소 개수만큼 반복해서 출력
+     -->
+    {{#articleList}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
+            <td>{{content}}</td>
+        </tr>
+    {{/articleList}}
+    </tbody>
+</table>
+
+<!-- 글쓰기 화면을 요청하는 a태그 -->
+<a href="/articles/new">New Article</a>
+
+{{>layouts/footer}}

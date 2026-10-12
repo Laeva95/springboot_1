@@ -1,0 +1,39 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--
+    model.addAttribute("article", articleEntity) 으로 저장한 article 객체를 꺼내옴
+ -->
+{{#article}}
+    <tr>
+        <th>{{id}}</th>
+        <td>{{title}}</td>
+        <td>{{content}}</td>
+    </tr>
+{{/article}}
+    </tbody>
+</table>
+<!--
+    article
+    -> #article, /article 사이에 작성할 때에는 변수명만 작성해도 되지만
+        그 외에 범위를 지정하지 않고 사용하려면 article.id 처럼 attribute.변수명으로 작성해야함
+ -->
+<!-- 글 수정 요청 버튼 -->
+<a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit</a>
+<!-- 글 삭제 요청 버튼 -->
+<a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a>
+<!-- 글 목록 요청 버튼 -->
+<a href="/articles">Go to Article List</a>
+
+<!-- 부모 상세글 페이지 아래 댓글 뷰 삽입 -->
+{{>comments/_comments}}
+
+{{>layouts/footer}}

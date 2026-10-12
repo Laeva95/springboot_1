@@ -1,0 +1,28 @@
+<!--
+  ==========================================================================
+  orm.xml : JPA 매핑 설정 파일 (자바 코드 밖에 쿼리를 정의하는 XML 파일)
+  ==========================================================================
+   - XML : 태그(<이름> ... </이름>)로 데이터 구조를 표현하는 텍스트 형식
+   - CommentRepository의 findByNickname() 메서드를 호출하면,
+     스프링 데이터 JPA는 이 파일에서 이름이 "Comment.findByNickname"인 쿼리를 찾아 실행합니다.
+   - 이름 규칙 : "엔티티이름.메서드이름" 형식이 정확히 일치해야 메서드와 쿼리가 연결됩니다.
+-->
+<!-- entity-mappings : orm.xml의 최상위(루트) 태그. xmlns, xsi 속성은 이 XML이 따르는 JPA 3.0 문서 규격(스키마)을 지정 -->
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence/orm
+                 https://jakarta.ee/xml/ns/persistence/orm/orm_3_0.xsd"
+                 version="3.0">
+<!--
+    named-native-query: 이름을 붙인 네이티브 쿼리를 정의하는 태그
+-->
+    <named-native-query name="Comment.findByNickname" result-class="com.example.firstproject.entity.Comment">
+<!--
+    CDATA 섹션: 내부의 SQL 내용을 XML 태그로 해석하지 않고 일반 텍스트로 처리
+-->
+        <query><![CDATA[select * from comment where nickname = :nickname]]></query>
+    </named-native-query>
+</entity-mappings>
+
+
+</entity-mappings>

@@ -1,0 +1,27 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--
+    model.addAttribute("article", articleEntity) 으로 저장한 article 객체를 꺼내옴
+ -->
+{{#member}}
+    <tr>
+        <th>{{id}}</th>
+        <td>{{email}}</td>
+        <td>{{password}}</td>
+    </tr>
+{{/member}}
+    </tbody>
+</table>
+
+<a href="/members">Go to Member List</a>
+
+{{>layouts/footer}}

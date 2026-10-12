@@ -1,0 +1,11 @@
+
+<!-- 1. {{>header}} : partial(부분 템플릿) 포함 문법으로 header.mustache 파일 내용을 이 위치에 삽입합니다. -->
+{{>header}}
+
+    <!-- 2. FirstController.java의 seeYouNext() 메소드 안에서
+         model.addAttribute("nickname", "홍길동"); 으로 바인딩 해 두었던 nickname 변수값을
+         {{nickname}} 문법으로 꺼내와 화면에 출력합니다. -->
+    <h1>{{nickname}}님, 다음에 또 만나요!</h1>
+
+<!-- 3. footer.mustache 파일 내용을 이 위치에 삽입합니다. -->
+{{>footer}}

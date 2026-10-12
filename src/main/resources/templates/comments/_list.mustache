@@ -1,0 +1,16 @@
+<div id="comments-list">
+<!--  댓글 목록 전체를 보여주는 영역  -->
+    {{#commentsDtos}}
+        <!-- 하나의 댓글을 보여주는 카드 영역 -->
+        <div class="card m-2" id="comments-{{id}}">
+            <!-- 댓글 헤더 영역 -->
+            <div class="card-header">
+                {{nickname}}
+            </div>
+            <!-- 댓글 본문 영역 -->
+            <div class="card-body">
+                {{body}}
+            </div>
+        </div>
+    {{/commentsDtos}}
+</div>
