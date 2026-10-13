@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service    // Service 객체를 자동 생성해서 스프링 컨테이너에 등록
@@ -45,5 +44,33 @@ public class CommentService {
 
         // DB에 저장한 엔티티 정보를 dto 객체로 변환해서 반환
         return CommentDto.createCommentDto(created);
+    }
+
+    @Transactional
+    public CommentDto update(Long id, CommentDto dto) {
+        // 수정할 댓글이 DB에 존재하는지 확인
+        Comment target = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("댓글 수정 실패! 수정할 댓글을 찾을 수 없습니다."));
+
+        // 수정시킬 댓글 정보가 있다면 수정
+        target.patch(dto);
+
+        // DB에 수정 정보 반영
+        Comment updated = commentRepository.save(target);
+
+        // 수정한 CommentDto 객체 반환
+        return CommentDto.createCommentDto(updated);
+    }
+
+    public CommentDto delete(Long id) {
+        // 삭제할 대상이 존재하는지 db에서 확인
+        Comment target = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("댓글 삭제 실패! 삭제할 댓글이 없습니다."));
+
+        // 댓글 삭제
+        commentRepository.delete(target);
+
+        // 삭제에 성공한 댓글 정보 반환
+        return CommentDto.createCommentDto(target);
     }
 }

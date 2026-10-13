@@ -18,6 +18,12 @@
                         data-bs-article-id="{{articleId}}"> <!-- 댓글 id, nickname, body, 부모 id 값 전달 -->
                     수정
                 </button>
+                <!-- 삭제 버튼 영역 -->
+                <button type="button"
+                        class="btn btn-sm btn-outline-danger comment-delete-btn"
+                        data-comment-id="{{id}}">
+                    삭제
+                </button>
             </div>
             <!-- 댓글 본문 영역 -->
             <div class="card-body">
@@ -93,10 +99,10 @@
         commentUpdateBtn.addEventListener("click", () => {
             // 수정 요청할 정보를 보관하는 객체 생성
             const comment = {
-                id: document.querySelector("#edit-comment-id").value,
-                nickname: document.querySelector("#edit-comment-nickname").value,
-                body: document.querySelector("#edit-comment-body").value,
-                article_id: document.querySelector("#edit-comment-article-id").value
+                "id": document.querySelector("#edit-comment-id").value,
+                "nickname": document.querySelector("#edit-comment-nickname").value,
+                "body": document.querySelector("#edit-comment-body").value,
+                "article_id": document.querySelector("#edit-comment-article-id").value
             };
             console.log(comment);
 
@@ -104,11 +110,50 @@
             const url = "/api/comments/" + comment.id;
 
             fetch(url, {
-                method:"patch",
-                header:{
+                method:"PATCH",
+                headers:{
                     "Content-Type":"application/json"
                 },
                 body:JSON.stringify(comment)
+            }).then(response => {
+                // 응답 메세지를 response 매개변수로 전달 받음
+                const msg = (response.ok) ? "댓글이 수정되었습니다." : "댓글이 수정되지 않았습니다.";
+
+                // 메세지 출력
+                alert(msg);
+
+                // 사이트 재요청
+                location.reload();
+            });
+        });
+    }
+    {
+        // 삭제 버튼들을 선택
+        const commentDeleteBtns = document.querySelectorAll(".comment-delete-btn");
+
+        // 모든 삭제 버튼에 대해 실행
+        commentDeleteBtns.forEach(btn => {
+            // 클릭 이벤트 등록
+            btn.addEventListener("click", (event) => {
+                // 클릭된 삭제 버튼을 선택
+                const commentDeleteBtn = event.target;
+
+                // 삭제할 댓글 id 가져오기
+                const commentId = commentDeleteBtn.getAttribute("data-comment-id");
+                console.log(`삭제 버튼 id: ${commentId}`);
+
+                // REST API 삭제 요청
+                const url = `/api/comments/${commentId}`;
+
+                fetch(url, {
+                    method:"delete"
+                }).then(response => {
+                    const msg = (response.ok) ? "댓글이 삭제되었습니다." : "댓글 삭제에 실패했습니다.";
+
+                    alert(msg);
+
+                    location.reload();
+                });
             });
         });
     }

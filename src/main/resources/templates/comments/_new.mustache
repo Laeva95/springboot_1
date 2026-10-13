@@ -10,7 +10,7 @@
 <!--        댓글 내용 입력    -->
             <div class="mb-3">
                 <label class="form-label">내용</label>
-                <textarea type="text" class="form-control" id="new-comment-body"></textarea>
+                <textarea class="form-control" id="new-comment-body"></textarea>
             </div>
 <!--        부모 게시글 속성    -->
             {{#article}}
@@ -32,7 +32,7 @@
             const comment = {
                 "nickname":document.querySelector("#new-comment-nickname").value,
                 "body":document.querySelector("#new-comment-body").value,
-                "articleId":document.querySelector("#new-comment-article-id").value
+                "article_id":document.querySelector("#new-comment-article-id").value
             };
             console.log(comment);
 

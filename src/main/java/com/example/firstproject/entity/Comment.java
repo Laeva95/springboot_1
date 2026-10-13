@@ -37,4 +37,19 @@ public class Comment {
         // 엔티티 생성 및 반환
         return new Comment(null, article, dto.getNickname(), dto.getBody());
     }
+
+    public void patch(CommentDto dto) {
+        // 현재 댓글의 id와 요청 메세지의 id가 다르면 수정 거부
+        if(this.id != dto.getId()){
+            throw new IllegalArgumentException("댓글 수정 요청 실패! 댓글 id 값이 틀립니다.");
+        }
+
+        // 수정할 부분 내용을 dto에 갱신
+        if(dto.getNickname() != null){
+            this.nickname = dto.getNickname();
+        }
+        if(dto.getBody() != null){
+            this.body = dto.getBody();
+        }
+    }
 }
