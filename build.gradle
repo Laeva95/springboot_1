@@ -20,6 +20,7 @@ repositories {
 
 // dependencies: 외부에서 jar 파일 경로를 추가하여 편하게 라이브러리를 사용 할 수 있음
 dependencies {
+	runtimeOnly 'com.mysql:mysql-connector-j'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
